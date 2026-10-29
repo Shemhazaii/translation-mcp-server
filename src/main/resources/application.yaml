@@ -1,0 +1,27 @@
+server:
+  port: 8091
+
+spring:
+  ai:
+    mcp:
+      server:
+        name: translation-mcp-server
+        version: 1.0.0
+        protocol: STREAMABLE
+        instructions: >
+          Translation tools for translating manga images
+          and image archives using the Translation Service.
+
+translation:
+  api:
+    base-url: ${TRANSLATION_API_BASE_URL:http://localhost:8080}
+
+storage:
+  # Upload endpoint (internal, authenticated). The public URL host is
+  # separate: the plain path-style URL is not signed, so any host the
+  # browser can reach works — default is the Tailscale node IP.
+  endpoint: ${MINIO_ENDPOINT_URL:http://100.92.228.9:30903}
+  access-key: ${MINIO_ACCESS_KEY:loki}
+  secret-key: ${MINIO_SECRET_KEY:supersecret}
+  bucket: ${MINIO_BUCKET:hermes-downloads}
+  public-base-url: ${MINIO_PUBLIC_BASE_URL:http://100.92.228.9:30903}
